@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Lịch Rảnh Nhóm</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <!-- Header Card -->
+  <section class="card">
+    <header class="toolbar">
+      <div class="brand">
+        <div class="title-row">
+          <h1 class="title">
+            <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+              <rect x="1" y="1" width="24" height="24" rx="6" fill="#16a34a"/>
+              <path d="M6 9.5h14M6 13.5h14M6 17.5h14M11 6v14M16 6v14" stroke="#fff" stroke-width="1.5" fill="none" opacity=".9"/>
+            </svg>
+            Lịch Rảnh Nhóm
+          </h1>
+          <span class="sync-badge syncing" id="syncBadge">
+            <span class="sync-dot"></span>
+            <span id="syncText">Đang kết nối...</span>
+          </span>
+        </div>
+        <p class="subtitle">Bấm vào tên cột để sửa tên • Bấm vào ô để chọn Rảnh / Bận • Tự động đồng bộ cho cả nhóm</p>
+      </div>
+
+      <div class="toolbar-actions">
+        <button class="btn primary" id="btnAdd" type="button">+ Thêm người</button>
+        <button class="btn blue" id="btnCopy" type="button">Copy Link chia sẻ</button>
+        <button class="btn ghost-danger" id="btnClear" type="button">Xóa tuần này</button>
+      </div>
+    </header>
+
+    <div class="weekbar">
+      <button class="btn btn-sm" id="btnPrevWeek" type="button">← Tuần trước</button>
+      <div class="week-center">
+        <span class="week-label" id="weekLabel">Tuần ...</span>
+        <button class="btn-today" id="btnToday" type="button">Hôm nay</button>
+      </div>
+      <button class="btn btn-sm" id="btnNextWeek" type="button">Tuần sau →</button>
+    </div>
+  </section>
+
+  <!-- Main Table Card -->
+  <section class="card">
+    <div class="infobar empty" id="info" aria-live="polite"></div>
+    <main class="wrap" id="wrap">
+      <table aria-label="Lịch rảnh nhóm theo tuần">
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </main>
+  </section>
+</div>
+
+<!-- Popover chọn Rảnh / Bận -->
+<div class="pop" id="pop" role="menu" hidden>
+  <button type="button" class="p-free" data-v="1" role="menuitem">Rảnh</button>
+  <button type="button" class="p-busy" data-v="2" role="menuitem">Bận</button>
+  <button type="button" class="p-clear" data-v="0" role="menuitem">Xóa</button>
+</div>
+
+<!-- Dialog xác nhận -->
+<div class="overlay" id="overlay" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <h2 id="dlgTitle"></h2>
+    <p id="dlgMsg"></p>
+    <input id="dlgInput" type="text" readonly hidden aria-label="Link chia sẻ">
+    <div class="actions" id="dlgActions"></div>
+  </div>
+</div>
+
+<!-- Toast thông báo -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
